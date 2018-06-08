@@ -81,8 +81,8 @@ Test this function by hand in the console to get it working, and when you think 
 
 // Write your code here
 function sumArray(sumArr) {
-  var totalSum=sumArr[0]+sumArr[1]+sumArr[2];
-  var array=[totalSum,sumArr[0]+","+sumArr[1]+","+sumArr[2]+" was passed in as an array of numbers, and "+totalSum+" is their sum."];
+  var totalSum=sum((sum(sumArr[0],sumArr[1]))[0],sumArr[2]);
+  var array=[totalSum[0],sumArr[0]+","+sumArr[1]+","+sumArr[2]+" was passed in as an array of numbers, and "+totalSum[0]+" is their sum."];
   return array;
 }
 
@@ -104,8 +104,8 @@ Test this function by hand in the console to get it working, and when you think 
 
 // Write your code here
 function multiplyArray(multArr) {
-  var totalProduct=multArr[0]*multArr[1]*multArr[2];
-  var array=[totalProduct,"The numbers "+multArr[0]+","+multArr[1]+","+multArr[2]+" have a product of "+totalProduct+"."];
+  var totalProduct=multiply(multiply(multArr[0],multArr[1])[0],multArr[2]);
+  var array=[totalProduct[0],"The numbers "+multArr[0]+","+multArr[1]+","+multArr[2]+" have a product of "+totalProduct[0]+"."];
   return array;
 }
 
@@ -132,10 +132,16 @@ Test this function by hand in the console to get it working, and when you think 
 
 // Write your code here
 function multiplyAnyArray(dynamicArray) {
-
+  var dynamicTotal=1; // Just need to set this up. Because 1*x=x its a good place to start
+  for(var indexNum=0;indexNum<dynamicArray.length;indexNum++){
+    dynamicTotal=multiply(dynamicTotal,dynamicArray[indexNum])[0];
+  }
+  var dynamicList=dynamicArray.join(",");
+  var array=[dynamicTotal,"The numbers "+dynamicList+" have a product of "+dynamicTotal+"."];
+  return array;
 }
 
 // Here is the test for multiplyArray(); uncomment it to run it
-// testMultiplyAnyArray([1,2,3,4,5]);
+testMultiplyAnyArray([1,2,3,4,5]);
 
 // Once you get the test passing, do an a-c-p cycle and synchronize the code between GitHub and your laptop. You're done! Submit the link to the repo following the instructions in Canvas.
